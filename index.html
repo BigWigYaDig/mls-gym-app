@@ -13,27 +13,26 @@
   <title>MLS Gym</title>
   <link rel="manifest" href="/manifest.json" />
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
   <link rel="apple-touch-icon" href="/icon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
-    html { height: 100%; background: #0F0F13; }
-    body { margin: 0; padding: 0; min-height: 100dvh; background: #0F0F13; color: #F5F5F0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; overscroll-behavior: none; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-    #root { min-height: 100dvh; position: relative; }
-    * { scrollbar-width: none; -ms-overflow-style: none; }
-    *::-webkit-scrollbar { display: none; }
-    #loading { position: fixed; inset: 0; background: #0F0F13; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s ease; }
-    #loading.fade-out { opacity: 0; pointer-events: none; }
-    .loading-icon { width: 96px; height: 96px; border-radius: 22px; background: linear-gradient(135deg, #1E1E28, #2A2A36); display: flex; align-items: center; justify-content: center; font-size: 52px; margin-bottom: 24px; box-shadow: 0 0 40px rgba(59,130,246,0.3); animation: iconPulse 1.4s ease-in-out infinite; }
-    .loading-title { font-size: 22px; font-weight: 800; color: #F5F5F0; letter-spacing: 0.3px; margin-bottom: 6px; }
-    .loading-sub { font-size: 14px; color: #6B7280; }
-    .loading-bar { width: 160px; height: 3px; background: #1E1E28; border-radius: 2px; margin-top: 24px; overflow: hidden; }
-    .loading-bar-fill { height: 100%; background: linear-gradient(90deg, #3B82F6, #10B981); border-radius: 2px; animation: loadBar 1.2s ease-in-out infinite; }
-    @keyframes iconPulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(59,130,246,0.3); } 50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(59,130,246,0.5); } }
-    @keyframes loadBar { 0% { width: 0%; margin-left: 0; } 50% { width: 70%; margin-left: 0; } 100% { width: 10%; margin-left: 90%; } }
+    *,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;}
+    html{height:100%;background:#0F0F13;}
+    body{margin:0;padding:0;min-height:100dvh;background:#0F0F13;color:#F5F5F0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;overscroll-behavior:none;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+    #root{min-height:100dvh;}
+    *{scrollbar-width:none;-ms-overflow-style:none;}
+    *::-webkit-scrollbar{display:none;}
+    #loading{position:fixed;inset:0;background:#0F0F13;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.5s ease;}
+    #loading.fade-out{opacity:0;pointer-events:none;}
+    .loading-icon{width:96px;height:96px;border-radius:22px;background:linear-gradient(135deg,#1E1E28,#2A2A36);display:flex;align-items:center;justify-content:center;font-size:52px;margin-bottom:24px;box-shadow:0 0 40px rgba(59,130,246,0.3);animation:iconPulse 1.4s ease-in-out infinite;}
+    .loading-title{font-size:22px;font-weight:800;color:#F5F5F0;margin-bottom:6px;}
+    .loading-sub{font-size:14px;color:#6B7280;}
+    .loading-bar{width:160px;height:3px;background:#1E1E28;border-radius:2px;margin-top:24px;overflow:hidden;}
+    .loading-bar-fill{height:100%;background:linear-gradient(90deg,#3B82F6,#10B981);border-radius:2px;animation:loadBar 1.2s ease-in-out infinite;}
+    @keyframes iconPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+    @keyframes loadBar{0%{width:0%;margin-left:0;}50%{width:70%;margin-left:0;}100%{width:10%;margin-left:90%;}}
   </style>
 </head>
 <body>
@@ -44,30 +43,358 @@
     <div class="loading-bar"><div class="loading-bar-fill"></div></div>
   </div>
   <div id="root"></div>
-  <script crossorigin src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel" src="App.jsx" data-presets="react"></script>
-  <script type="text/babel" data-presets="react">
-    const domRoot = document.getElementById('root');
-    const reactRoot = ReactDOM.createRoot(domRoot);
-    reactRoot.render(React.createElement(WorkoutApp));
-    const hideLoader = () => {
-      const loader = document.getElementById('loading');
-      if (loader) { loader.classList.add('fade-out'); setTimeout(() => loader.remove(), 500); }
-    };
-    setTimeout(hideLoader, 900);
-  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(reg => console.log('[MLS Gym] SW registered ✓', reg.scope))
-          .catch(err => console.warn('[MLS Gym] SW failed:', err));
-      });
+  (function(){
+    const {useState,useEffect,useRef,useCallback} = React;
+
+    // ── DATA ──────────────────────────────────────────────────────────────────
+    const PHASES=[
+      {id:1,label:"Phase 1",sublabel:"Foundation",months:"Months 1–2",color:"#3B82F6",description:"Master form on machines. Light weight only. Build the habit.",rules:["Machines only — zero free weights","3 sets × 10–12 reps","Focus on breathing every rep","Never sacrifice form for weight","Increase weight only when 12 reps feel easy for 2 sessions in a row"]},
+      {id:2,label:"Phase 2",sublabel:"Volume",months:"Months 3–4",color:"#8B5CF6",description:"Add reps and introduce light dumbbells. Build endurance.",rules:["Machines + light dumbbells introduced","4 sets × 12–15 reps","Reduce rest by 15 sec from Phase 1","Add 1 new exercise per category","Still prioritize form — weight is secondary"]},
+      {id:3,label:"Phase 3",sublabel:"Strength",months:"Months 5–6",color:"#10B981",description:"Compound movements, more volume, weekly deload every 4th week.",rules:["Dumbbells + cables primary","4 sets × 8–12 reps with heavier load","Deload every 4th week (reduce weight 40%)","Compound movements introduced","Rest 60–75 sec between sets"]},
+      {id:4,label:"Phase 4",sublabel:"Intermediate",months:"Month 7+",color:"#F59E0B",description:"Free weights, split training, progressive overload tracked weekly.",rules:["Free weights + machines combined","Split training: push/pull/legs","5% weight increase every 2 weeks","Track every session","Consider a certified trainer for form checks"]},
+    ];
+
+    const USERS={
+      marvin:{id:"marvin",name:"Marvin",emoji:"💪🏾",weight:295,startWeight:370,lost:75,profileColor:"#3B82F6",healthNotes:["Back issues — no heavy spinal loading","High blood pressure — exhale on every rep","Beginner-safe form is the priority"]},
+      wife:{id:"wife",name:"LaShay",emoji:"🌟",weight:null,startWeight:null,lost:null,profileColor:"#EC4899",healthNotes:["General fitness & strength","Beginner-friendly pace throughout","Modify any exercise as needed"]},
+    };
+
+    const WARMUP={id:"warmup",label:"Warm-Up",emoji:"🔥",color:"#F59E0B",description:"Always do this before every session · ~10 minutes",exercises:[
+      {id:"seated-marching",name:"Seated Marching",muscles:"Hip Flexors · Light Cardio",sets:"1",reps:"30 sec",rest:"—",restSeconds:0,bpNote:"Ideal warm-up for high BP — gradual heart rate rise",backNote:"Seated = zero spinal load. Perfect opener.",steps:["Sit tall on bench, feet flat on floor, sit slightly forward","Begin lifting alternate knees in a slow marching rhythm","Keep your back straight — string pulling top of head up","Breathe in through nose, out through mouth the whole time","Gradually increase the pace after 10 seconds"],avoid:"Don't hunch forward — tall posture the whole time",tip:"Wakes up hips and safely raises heart rate before lifting"},
+      {id:"shoulder-rolls",name:"Shoulder Rolls",muscles:"Shoulders · Upper Traps",sets:"1",reps:"10 fwd + 10 back",rest:"—",restSeconds:0,bpNote:"Slow movement — breathe steadily throughout",backNote:"Releases upper back tension before pressing/pulling",steps:["Stand or sit tall, arms relaxed at sides","Roll both shoulders forward in big slow circles — 10 times","Reverse direction — roll backward 10 times","At top of each roll, gently squeeze shoulder blades together","Keep neck relaxed throughout"],avoid:"Don't rush — slow circles give more benefit",tip:"Counteracts the forward-slouch posture most people carry from daily life"},
+      {id:"hip-circles",name:"Hip Circles",muscles:"Hips · Lower Back Mobility",sets:"1",reps:"10 each direction",rest:"—",restSeconds:0,bpNote:"Light movement — breathe continuously",backNote:"Gently mobilizes lower back before any leg work",steps:["Stand feet shoulder-width apart, hands on hips","Make slow large circles with your hips — 10 clockwise","Then 10 counter-clockwise — as big as comfortable","Keep your upper body relatively still","Move within the painless range"],avoid:"Don't force the range — go as far as comfortable only",tip:"Stiffness here is normal. Improves steadily week over week."},
+      {id:"bw-squat",name:"Bodyweight Squat (Partial)",muscles:"Quads · Glutes · Ankles",sets:"1",reps:"10",rest:"—",restSeconds:0,bpNote:"Exhale as you stand up each time",backNote:"Quarter squat only — chest up, back stays neutral",steps:["Stand feet slightly wider than shoulder-width, toes out slightly","Hold something sturdy if needed for balance","Breathe in, slowly lower down — quarter to half depth only","Chest up, knees tracking over toes","Exhale and stand back up, squeeze glutes at top","Don't let lower back round — reduce depth if it does"],avoid:"No deep squats for now — quarter range is perfect warm-up",tip:"Best single move to prepare the whole lower body."},
+      {id:"arm-circles",name:"Arm Circles + Chest Opener",muscles:"Shoulders · Chest · Upper Back",sets:"1",reps:"10 each dir + 5 opens",rest:"—",restSeconds:0,bpNote:"Keep breathing — no straining",backNote:"Opens chest and activates upper back before pressing",steps:["Stand tall, arms extended out to sides at shoulder height","Make 10 small arm circles forward, then 10 backward","Bring arms in front, cross them like hugging yourself","Open them wide — pull arms back to stretch chest","Repeat open/close 5 times, taking a full breath each rep"],avoid:"Don't lock elbows — slight bend keeps tension off the joint",tip:"The chest opener counteracts slouching — important before upper body days"},
+    ]};
+
+    const WORKOUTS=[
+      {id:"lower",label:"Lower Body",emoji:"🦵",color:"#3B82F6",exercises:[
+        {id:"leg-press",name:"Seated Leg Press",muscles:"Quads · Glutes · Hamstrings",sets:"3",reps:"10–12",rest:"90 sec",restSeconds:90,bpNote:"Exhale on every push — never hold breath",backNote:"Keep lower back pressed into seat the entire movement",steps:["Sit fully back in seat, back flat against pad","Feet shoulder-width apart, toes slightly turned out","Lower weight slowly — 3 seconds down — until knees at 90°","Push through heels to return, exhaling as you push","Stop just before knees lock out at top","Never let lower back round off the pad"],avoid:"If lower back lifts off the pad, reduce your range of motion",tip:"Start lighter than you think you need. Form first, always."},
+        {id:"glute-bridge",name:"Glute Bridge",muscles:"Glutes · Hamstrings · Core",sets:"3",reps:"12–15",rest:"60 sec",restSeconds:60,bpNote:"Breathe out as you lift hips up",backNote:"STRENGTHENS lower back safely — priority exercise for back issues",steps:["Lie on back, knees bent, feet flat hip-width apart","Arms at sides, palms down for stability","Breathe in, then exhale as you press heels into floor and lift hips","Squeeze glutes hard at top — straight line shoulders to knees","Hold top for 2 seconds","Lower slowly — 3 seconds down"],avoid:"Don't hyperextend at top — just a flat straight line",tip:"If you feel it in lower back instead of glutes, move feet closer to your body"},
+        {id:"calf-raise",name:"Seated Calf Raise",muscles:"Calves",sets:"3",reps:"15–20",rest:"60 sec",restSeconds:60,bpNote:"Low intensity — great for circulation and BP management",backNote:"Seated = zero spinal load",steps:["Sit at edge of bench or chair, feet flat on floor","If on machine, place pad across lower thighs","Rise up on toes as high as possible, exhaling as you rise","Pause at top 1 second","Lower slowly — feel the stretch in your calf"],avoid:"Don't bounce — full controlled range every rep",tip:"Can do this anywhere — great between sets"},
+      ],phaseProgressions:{1:{note:"Machine only. Light weight. 3×10-12. Perfect form priority."},2:{note:"Add a 4th set. Increase reps to 12-15. Introduce dumbbell RDL."},3:{note:"Heavier load. 4×8-12. Add goblet squat. Deload every 4th week."},4:{note:"Barbell hip thrust, dumbbell lunges. Split training. Track weight weekly."}}},
+      {id:"upper",label:"Upper Body",emoji:"💪",color:"#8B5CF6",exercises:[
+        {id:"chest-press",name:"Seated Chest Press (Machine)",muscles:"Chest · Shoulders · Triceps",sets:"3",reps:"10–12",rest:"90 sec",restSeconds:90,bpNote:"Exhale as you press — never hold breath",backNote:"Back supported by seat — no spinal compression",steps:["Adjust seat so handles are at chest height","Sit back fully, back flat against pad","Neutral grip (palms facing each other) — easier on shoulders","Start with elbows slightly behind body","Exhale and press forward until arms almost fully extended","Slowly return to start — 3 full seconds back"],avoid:"Don't shrug shoulders up — keep them pulled down and back",tip:"Machine beats free weights right now — safer for back and blood pressure"},
+        {id:"cable-row",name:"Seated Cable Row",muscles:"Mid Back · Biceps · Rear Shoulders",sets:"3",reps:"10–12",rest:"90 sec",restSeconds:90,bpNote:"Controlled movement — exhale as you pull",backNote:"Builds muscles that PROTECT your back — high priority exercise",steps:["Sit at cable row machine, feet on platform, knees slightly bent","Grab handle with both hands — sit up straight, chest up","Start with arms extended — don't round back to reach","Exhale and pull handle to belly button, squeezing shoulder blades","At end, elbows should be behind you, torso upright","Slowly extend arms back — 3 full seconds"],avoid:"Don't lean way back and use momentum — torso stays stable",tip:"Think 'chest up, squeeze the back' — not just pulling with arms"},
+        {id:"lat-pulldown",name:"Lat Pulldown",muscles:"Lats · Biceps · Upper Back",sets:"3",reps:"10–12",rest:"90 sec",restSeconds:90,bpNote:"Exhale on every pull down",backNote:"Safe alternative to pull-ups — builds back without compressing spine",steps:["Sit at lat pulldown machine, thighs secured under pad","Grab bar slightly wider than shoulder width, palms forward","Lean back slightly — 10–15 degrees only","Pull bar to upper chest, exhaling — elbows to back pockets","Slowly let bar rise back up — feel lat stretch"],avoid:"NEVER pull behind the head — stresses neck and upper spine",tip:"If wide bar strains shoulders, ask for a neutral V-bar attachment"},
+      ],phaseProgressions:{1:{note:"Machines only. Light weight. 3×10-12. Breathing cue on every rep."},2:{note:"4 sets. Add dumbbell shoulder press seated. 12-15 reps."},3:{note:"Dumbbell bench press added. 4×8-12 heavier. Deload every 4th week."},4:{note:"Push/pull split. Incline press, face pulls. Track progress weekly."}}},
+      {id:"core",label:"Core & Cardio",emoji:"🫀",color:"#10B981",exercises:[
+        {id:"dead-bug",name:"Dead Bug",muscles:"Deep Core · Lumbar Stability",sets:"3",reps:"8 each side",rest:"60 sec",restSeconds:60,bpNote:"Slow steady breathing — never hold breath",backNote:"One of the safest core exercises for back issues — physio-recommended",steps:["Lie on back, arms pointing straight up toward ceiling","Bring knees up bent at 90°, directly above hips","Press lower back FIRMLY into floor — must not leave floor","Slowly lower right arm overhead AND left leg toward floor simultaneously","Stop before either touches floor — back stays glued down","Return to start, exhale","Switch sides — that's one rep"],avoid:"If lower back arches off floor, you've gone too far — reduce range",tip:"Harder than it looks. Quality over speed, always."},
+        {id:"seated-marching",name:"Seated Marching",muscles:"Hip Flexors · Core",sets:"3",reps:"20 total",rest:"45 sec",restSeconds:45,bpNote:"Low intensity rhythmic movement — ideal for blood pressure",backNote:"Zero back strain — fully seated",steps:["Sit tall on bench, feet flat, sit slightly forward","Lift right knee toward chest, lower it","Lift left knee, lower — alternate in steady rhythm","Back straight the whole time","Breathe in nose, out mouth"],avoid:"Don't hunch forward — tall posture entire set",tip:"Works as both warm-up and core work"},
+        {id:"walking",name:"Walking",muscles:"Cardiovascular · Full Body",sets:"1",reps:"15–20 min",rest:"—",restSeconds:0,bpNote:"BEST exercise for high blood pressure — lowers BP measurably within 4 weeks",backNote:"Head up, arms swinging naturally — good posture protects spine",steps:["Start at comfortable pace — '5 out of 10' effort","Head up looking forward — not down at feet","Let arms swing naturally with each step","Land mid-foot — not heel slamming","Breathe normally — you should be able to hold a conversation","Increase duration 2–3 min each week"],avoid:"Don't go so fast you're gasping — if you can't talk, slow down",tip:"Walking right after your strength session is the ideal combination"},
+      ],phaseProgressions:{1:{note:"Dead bug + seated marching. 10-15 min walk after session."},2:{note:"Bird-dog added. Walking increases to 20 min. Add plank (15-30 sec)."},3:{note:"Pallof press added. Walking 25 min. Core circuit format."},4:{note:"Full core circuit. 30 min walk or light jog intervals."}}},
+    ];
+
+    const ALL_CATS=[WARMUP,...WORKOUTS];
+    const SCHEDULE=[
+      {day:"Monday",focus:"Warm-Up + Lower Body",ids:["warmup","lower"]},
+      {day:"Tuesday",focus:"Warm-Up + Walking / Cardio",ids:["warmup","core"]},
+      {day:"Wednesday",focus:"Warm-Up + Upper Body",ids:["warmup","upper"]},
+      {day:"Thursday",focus:"Rest / Light Walk",ids:[]},
+      {day:"Friday",focus:"Warm-Up + Lower Body + Core",ids:["warmup","lower","core"]},
+      {day:"Saturday",focus:"Warm-Up + Upper Body",ids:["warmup","upper"]},
+      {day:"Sunday",focus:"Full Rest",ids:[]},
+    ];
+
+    // ── HELPERS ───────────────────────────────────────────────────────────────
+    function fmtDur(s){const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;if(h>0)return h+":"+String(m).padStart(2,"0")+":"+String(sec).padStart(2,"0");return String(m).padStart(2,"0")+":"+String(sec).padStart(2,"0");}
+    function fmtMi(m){return(m/1609.34).toFixed(2)+" mi";}
+    function fmtPace(m,s){if(m<10||s<5)return"--";return((m/1609.34)/(s/3600)).toFixed(1)+" mph";}
+
+    // ── REST TIMER ────────────────────────────────────────────────────────────
+    function RestTimer({seconds,onClose}){
+      const [t,setT]=useState(seconds),[run,setRun]=useState(true);
+      const aRef=useRef(null);
+      const beep=useCallback((f=880,d=0.15)=>{try{if(!aRef.current)aRef.current=new(window.AudioContext||window.webkitAudioContext)();const c=aRef.current,o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=f;o.type="sine";g.gain.setValueAtTime(0.4,c.currentTime);g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+d);o.start(c.currentTime);o.stop(c.currentTime+d);}catch(e){}},[]);
+      useEffect(()=>{if(!run||t<=0)return;const id=setInterval(()=>{setT(v=>{if(v<=1){clearInterval(id);setRun(false);setTimeout(()=>beep(880,0.2),0);setTimeout(()=>beep(880,0.2),280);setTimeout(()=>beep(1100,0.45),560);return 0;}if(v<=4)beep(600,0.08);return v-1;});},1000);return()=>clearInterval(id);},[run,beep]);
+      const pct=t/seconds,C=2*Math.PI*52,col=t===0?"#10B981":t<=10?"#EF4444":"#3B82F6";
+      return React.createElement("div",{style:{position:"fixed",inset:0,background:"rgba(0,0,0,0.88)",zIndex:2000,display:"flex",alignItems:"center",justifyContent:"center",padding:24}},
+        React.createElement("div",{style:{background:"#1A1A22",borderRadius:28,padding:36,width:"100%",maxWidth:320,textAlign:"center"}},
+          React.createElement("div",{style:{fontSize:13,color:"#9CA3AF",fontWeight:700,letterSpacing:1,marginBottom:28,textTransform:"uppercase"}},"Rest Timer"),
+          React.createElement("div",{style:{position:"relative",width:140,height:140,margin:"0 auto 28px"}},
+            React.createElement("svg",{width:140,height:140,style:{transform:"rotate(-90deg)"}},
+              React.createElement("circle",{cx:70,cy:70,r:52,fill:"none",stroke:"#2A2A36",strokeWidth:10}),
+              React.createElement("circle",{cx:70,cy:70,r:52,fill:"none",stroke:col,strokeWidth:10,strokeDasharray:`${pct*C} ${C}`,strokeLinecap:"round",style:{transition:"stroke-dasharray 0.9s linear,stroke 0.3s"}})
+            ),
+            React.createElement("div",{style:{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}},
+              React.createElement("div",{style:{fontSize:44,fontWeight:900,color:t===0?"#10B981":"#F5F5F0",lineHeight:1}},t===0?"GO!":t),
+              t>0&&React.createElement("div",{style:{fontSize:12,color:"#6B7280",marginTop:2}},"seconds")
+            )
+          ),
+          t===0?React.createElement("div",{style:{fontSize:18,color:"#10B981",fontWeight:700,marginBottom:22}},"Rest complete — start next set!"):
+          React.createElement("div",{style:{display:"flex",gap:12,marginBottom:14}},
+            React.createElement("button",{onClick:()=>setRun(r=>!r),style:{flex:1,background:run?"#2A2A36":"#3B82F6",color:"#fff",border:"none",borderRadius:16,padding:"15px",fontSize:15,fontWeight:700,cursor:"pointer"}},run?"⏸ Pause":"▶ Resume"),
+            React.createElement("button",{onClick:()=>{setT(seconds);setRun(true);},style:{flex:1,background:"#2A2A36",color:"#9CA3AF",border:"none",borderRadius:16,padding:"15px",fontSize:15,fontWeight:700,cursor:"pointer"}},"↺ Reset")
+          ),
+          React.createElement("button",{onClick:onClose,style:{width:"100%",background:"transparent",color:"#6B7280",border:"1px solid #2A2A36",borderRadius:16,padding:"13px",fontSize:14,fontWeight:600,cursor:"pointer"}},"Close")
+        )
+      );
     }
-    document.addEventListener('touchmove', (e) => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
-    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // ── EXERCISE DETAIL ───────────────────────────────────────────────────────
+    function ExDetail({ex,cat,sets,onToggle,onBack}){
+      const [step,setStep]=useState(0),[timer,setTimer]=useState(false),[tab,setTab]=useState("steps");
+      const total=parseInt(ex.sets)||3;
+      const done=Array.from({length:total}).filter((_,i)=>sets[cat.id+"__"+ex.name+"__"+i]).length;
+      const mark=i=>{const will=!sets[cat.id+"__"+ex.name+"__"+i];onToggle(cat.id,ex.name,i);if(will&&(done+(will?1:-1))<total&&ex.restSeconds>0)setTimeout(()=>setTimer(true),350);};
+      const S=n=>React.createElement.bind(null,n);
+      const div=S("div"),btn=S("button"),span=S("span");
+      return div({style:{background:"#0F0F13",minHeight:"100dvh",fontFamily:"Inter,sans-serif",color:"#F5F5F0"}},
+        timer&&React.createElement(RestTimer,{seconds:ex.restSeconds,onClose:()=>setTimer(false)}),
+        div({style:{background:cat.color,padding:"calc(env(safe-area-inset-top,0px) + 14px) 16px 22px",borderRadius:"0 0 22px 22px"}},
+          btn({onClick:onBack,style:{background:"rgba(255,255,255,0.2)",border:"none",color:"#fff",padding:"9px 16px",borderRadius:22,cursor:"pointer",fontSize:14,fontWeight:600,marginBottom:14}},"← Back"),
+          div({style:{fontSize:11,opacity:0.85,fontWeight:700,letterSpacing:1,textTransform:"uppercase",marginBottom:3}},ex.muscles),
+          div({style:{fontSize:22,fontWeight:800,marginBottom:12}},ex.name),
+          div({style:{display:"flex",gap:9,flexWrap:"wrap"}},
+            [["Sets",ex.sets],["Reps",ex.reps],["Rest",ex.rest]].map(([l,v])=>div({key:l,style:{background:"rgba(255,255,255,0.18)",borderRadius:12,padding:"7px 14px",textAlign:"center"}},div({style:{fontSize:15,fontWeight:800}},v),div({style:{fontSize:10,opacity:0.85}},l)))
+          )
+        ),
+        div({style:{padding:"14px 14px 120px"}},
+          div({style:{display:"flex",gap:9,marginBottom:14}},
+            div({style:{flex:1,background:"#1E0F0F",borderRadius:12,padding:"11px 12px",borderLeft:"3px solid #EF4444"}},div({style:{fontSize:10,color:"#EF4444",fontWeight:700,marginBottom:4}},"❤️ BP"),div({style:{fontSize:12,color:"#D1D5DB",lineHeight:1.5}},ex.bpNote)),
+            div({style:{flex:1,background:"#1F1700",borderRadius:12,padding:"11px 12px",borderLeft:"3px solid #F59E0B"}},div({style:{fontSize:10,color:"#F59E0B",fontWeight:700,marginBottom:4}},"🦴 BACK"),div({style:{fontSize:12,color:"#D1D5DB",lineHeight:1.5}},ex.backNote))
+          ),
+          div({style:{display:"flex",gap:8,marginBottom:14}},
+            [["steps","📋 Steps"],["tips","💡 Tips"]].map(([id,lbl])=>btn({key:id,onClick:()=>setTab(id),style:{flex:1,padding:"10px",borderRadius:12,border:"none",cursor:"pointer",fontSize:13,fontWeight:700,background:tab===id?cat.color:"#1A1A22",color:tab===id?"#fff":"#666"}},lbl))
+          ),
+          tab==="steps"&&div({style:{background:"#1A1A22",borderRadius:18,padding:18,marginBottom:14}},
+            div({style:{fontSize:11,color:"#9CA3AF",fontWeight:700,marginBottom:16,textTransform:"uppercase"}},"Step "+(step+1)+" of "+ex.steps.length),
+            ex.steps.map((s,i)=>div({key:i,onClick:()=>setStep(i),style:{display:"flex",gap:12,alignItems:"flex-start",marginBottom:14,cursor:"pointer"}},
+              div({style:{minWidth:32,height:32,borderRadius:"50%",background:step===i?cat.color:"#2A2A36",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:800,flexShrink:0}},i+1),
+              div({style:{fontSize:14,lineHeight:1.65,paddingTop:6,color:step===i?"#F5F5F0":"#5A5A6A"}},s)
+            )),
+            div({style:{display:"flex",gap:10,marginTop:16}},
+              btn({onClick:()=>setStep(Math.max(0,step-1)),style:{flex:1,padding:"14px",borderRadius:14,border:"1px solid #2A2A36",background:"transparent",color:"#9CA3AF",fontSize:14,fontWeight:700,cursor:"pointer"}},"← Prev"),
+              btn({onClick:()=>setStep(Math.min(ex.steps.length-1,step+1)),style:{flex:1,padding:"14px",borderRadius:14,border:"none",background:cat.color,color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer"}},"Next →")
+            )
+          ),
+          tab==="tips"&&div({style:{marginBottom:14}},
+            div({style:{background:"#0F1B2D",borderRadius:14,padding:"14px 16px",marginBottom:10,border:"1px solid #1E3A5F"}},div({style:{fontSize:11,color:"#60A5FA",fontWeight:700,marginBottom:6}},"💡 PRO TIP"),div({style:{fontSize:14,color:"#D1D5DB",lineHeight:1.65}},ex.tip)),
+            div({style:{background:"#1F130A",borderRadius:14,padding:"14px 16px",border:"1px solid #3D1F00"}},div({style:{fontSize:11,color:"#F97316",fontWeight:700,marginBottom:6}},"⚠️ AVOID"),div({style:{fontSize:14,color:"#D1D5DB",lineHeight:1.65}},ex.avoid))
+          ),
+          div({style:{background:"#1A1A22",borderRadius:18,padding:18}},
+            div({style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}},
+              div({style:{fontSize:12,color:"#9CA3AF",fontWeight:700,textTransform:"uppercase"}},"Track Sets"),
+              div({style:{fontSize:13,color:done===total?"#10B981":"#6B7280",fontWeight:700}},done+"/"+total+(done===total?" ✓ Done!":""))
+            ),
+            div({style:{display:"flex",gap:9}},
+              Array.from({length:total}).map((_,i)=>{const d=!!sets[cat.id+"__"+ex.name+"__"+i];return btn({key:i,onClick:()=>mark(i),style:{flex:1,padding:"17px 6px",borderRadius:14,border:d?"none":"2px solid #2A2A36",background:d?cat.color:"transparent",color:d?"#fff":"#555",fontSize:d?20:13,fontWeight:800,cursor:"pointer"}},d?"✓":"Set "+(i+1));})
+            ),
+            ex.restSeconds>0&&btn({onClick:()=>setTimer(true),style:{width:"100%",marginTop:12,padding:"14px",borderRadius:14,border:"1px solid #2A2A36",background:"transparent",color:"#9CA3AF",fontSize:13,fontWeight:600,cursor:"pointer"}},"⏱ Rest Timer ("+ex.rest+")")
+          )
+        )
+      );
+    }
+
+    // ── ACTIVITY TRACKER ──────────────────────────────────────────────────────
+    function Activity({userName,log,onSave}){
+      const [mode,setMode]=useState(null),[tracking,setTracking]=useState(false),[paused,setPaused]=useState(false);
+      const [elapsed,setElapsed]=useState(0),[steps,setSteps]=useState(0),[dist,setDist]=useState(0);
+      const [gpsErr,setGpsErr]=useState(null),[showLog,setShowLog]=useState(false),[saved,setSaved]=useState(false);
+      const tmr=useRef(null),wid=useRef(null),sc=useRef(null),last=useRef(null);
+      const hav=(a,b,c,d)=>{const R=6371000,dL=(c-a)*Math.PI/180,dl=(d-b)*Math.PI/180,x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dl/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));};
+      const start=()=>{setTracking(true);setPaused(false);setElapsed(0);setSteps(0);setDist(0);setGpsErr(null);last.current=null;tmr.current=setInterval(()=>setElapsed(e=>e+1),1000);if(navigator.geolocation){wid.current=navigator.geolocation.watchPosition(p=>{const{latitude:la,longitude:lo,accuracy:ac}=p.coords;if(ac>50)return;if(last.current){const d=hav(last.current.lat,last.current.lng,la,lo);if(d<(mode==="bike"?200:50))setDist(v=>v+d);}last.current={lat:la,lng:lo};},()=>setGpsErr("GPS unavailable"),{enableHighAccuracy:true,timeout:10000,maximumAge:2000});}else setGpsErr("GPS not supported");if(mode==="walk"&&typeof DeviceMotionEvent!=="undefined"){let lm=0,cd=false;sc.current=e=>{const{x,y,z}=e.accelerationIncludingGravity||{};if(x==null)return;const m=Math.sqrt(x*x+y*y+z*z);if(Math.abs(m-lm)>12&&!cd){setSteps(s=>s+1);cd=true;setTimeout(()=>{cd=false;},350);}lm=m;};window.addEventListener("devicemotion",sc.current);}};
+      const pause=()=>{if(paused){tmr.current=setInterval(()=>setElapsed(e=>e+1),1000);setPaused(false);}else{clearInterval(tmr.current);if(wid.current!=null){navigator.geolocation.clearWatch(wid.current);wid.current=null;}last.current=null;setPaused(true);}};
+      const stop=()=>{clearInterval(tmr.current);if(wid.current!=null)navigator.geolocation.clearWatch(wid.current);if(sc.current)window.removeEventListener("devicemotion",sc.current);onSave({id:Date.now(),type:mode,date:new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}),time:new Date().toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"}),duration:elapsed,distance:dist,steps:mode==="walk"?steps:null,pace:fmtPace(dist,elapsed)});setSaved(true);setTracking(false);setPaused(false);setTimeout(()=>setSaved(false),2500);};
+      useEffect(()=>()=>{clearInterval(tmr.current);if(wid.current!=null)navigator.geolocation.clearWatch(wid.current);if(sc.current)window.removeEventListener("devicemotion",sc.current);},[]);
+      const dd=dist>5?dist:(mode==="walk"&&steps>0?steps*0.762:dist);
+      const ulog=log.filter(s=>s.user===userName);
+      const e=React.createElement;
+      if(!mode)return e("div",null,
+        e("div",{style:{fontSize:16,fontWeight:800,marginBottom:6}},"Activity Tracker"),
+        e("div",{style:{fontSize:13,color:"#9CA3AF",marginBottom:18}},"Track your walk or bike ride in real time"),
+        saved&&e("div",{style:{background:"#10B98120",border:"1px solid #10B981",borderRadius:12,padding:"12px 14px",marginBottom:14,fontSize:14,color:"#10B981",fontWeight:600}},"✓ Session saved!"),
+        e("div",{style:{display:"flex",gap:12,marginBottom:20}},
+          e("div",{onClick:()=>setMode("walk"),style:{flex:1,background:"#1A1A22",borderRadius:20,padding:"24px 16px",textAlign:"center",cursor:"pointer",border:"2px solid #3B82F6"}},e("div",{style:{fontSize:44,marginBottom:10}},"🚶🏾"),e("div",{style:{fontSize:17,fontWeight:800,color:"#3B82F6",marginBottom:4}},"Walk"),e("div",{style:{fontSize:12,color:"#9CA3AF"}},"Steps · Distance · Pace")),
+          e("div",{onClick:()=>setMode("bike"),style:{flex:1,background:"#1A1A22",borderRadius:20,padding:"24px 16px",textAlign:"center",cursor:"pointer",border:"2px solid #10B981"}},e("div",{style:{fontSize:44,marginBottom:10}},"🚴🏾"),e("div",{style:{fontSize:17,fontWeight:800,color:"#10B981",marginBottom:4}},"Bike"),e("div",{style:{fontSize:12,color:"#9CA3AF"}},"Distance · Speed · Duration"))
+        ),
+        e("div",{style:{background:"#1E0F0F",borderRadius:12,padding:"12px 14px",marginBottom:20,borderLeft:"3px solid #EF4444"}},e("div",{style:{fontSize:11,color:"#EF4444",fontWeight:700,marginBottom:4}},"❤️ BP REMINDER"),e("div",{style:{fontSize:13,color:"#D1D5DB",lineHeight:1.5}},"Start at a comfortable pace. Stop if you feel chest pain, dizziness, or shortness of breath.")),
+        e("button",{onClick:()=>setShowLog(h=>!h),style:{width:"100%",background:"#1A1A22",border:"1px solid #2A2A36",borderRadius:14,padding:"13px",fontSize:14,fontWeight:700,color:"#9CA3AF",cursor:"pointer",marginBottom:12}},(showLog?"▲ Hide":"📋 View")+" Activity Log ("+ulog.length+" sessions)"),
+        showLog&&e("div",null,
+          ulog.length===0&&e("div",{style:{background:"#1A1A22",borderRadius:14,padding:"20px",textAlign:"center",color:"#555",fontSize:14}},"No sessions yet. Start your first one!"),
+          [...ulog].reverse().map(s=>e("div",{key:s.id,style:{background:"#1A1A22",borderRadius:14,padding:"14px 16px",marginBottom:10,borderLeft:"3px solid "+(s.type==="walk"?"#3B82F6":"#10B981")}},
+            e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}},
+              e("div",null,e("div",{style:{fontSize:14,fontWeight:700,color:s.type==="walk"?"#3B82F6":"#10B981"}},(s.type==="walk"?"🚶🏾":"🚴🏾")+" "+(s.type==="walk"?"Walk":"Bike Ride")),e("div",{style:{fontSize:12,color:"#6B7280"}},s.date+" · "+s.time)),
+              e("div",{style:{textAlign:"right"}},e("div",{style:{fontSize:14,fontWeight:800,color:"#F5F5F0"}},fmtMi(s.distance)),e("div",{style:{fontSize:12,color:"#9CA3AF"}},fmtDur(s.duration)))
+            ),
+            e("div",{style:{display:"flex",gap:8,marginTop:8,flexWrap:"wrap"}},
+              s.steps!=null&&e("span",{style:{background:"#2A2A36",color:"#D1D5DB",fontSize:11,padding:"4px 10px",borderRadius:18}},"👟 "+s.steps.toLocaleString()+" steps"),
+              e("span",{style:{background:"#2A2A36",color:"#D1D5DB",fontSize:11,padding:"4px 10px",borderRadius:18}},"⚡ "+s.pace),
+              e("span",{style:{background:"#2A2A36",color:"#D1D5DB",fontSize:11,padding:"4px 10px",borderRadius:18}},"⏱ "+fmtDur(s.duration))
+            )
+          )),
+          ulog.length>0&&(()=>{const td=ulog.reduce((a,s)=>a+s.distance,0),tt=ulog.reduce((a,s)=>a+s.duration,0),ts=ulog.filter(s=>s.steps).reduce((a,s)=>a+s.steps,0);return e("div",{style:{background:"linear-gradient(135deg,#1E1B2E,#1A1A22)",borderRadius:16,padding:16,marginTop:4,border:"1px solid #2D2A3E"}},e("div",{style:{fontSize:12,color:"#A78BFA",fontWeight:700,marginBottom:12,textTransform:"uppercase"}},"📊 All-Time Summary"),e("div",{style:{display:"flex",justifyContent:"space-around"}},[["Total Miles",fmtMi(td)],["Total Time",fmtDur(tt)],["Steps",ts>0?ts.toLocaleString():"—"]].map(([l,v])=>e("div",{key:l,style:{textAlign:"center"}},e("div",{style:{fontSize:18,fontWeight:800,color:"#A78BFA"}},v),e("div",{style:{fontSize:11,color:"#6B7280",marginTop:2}},l)))));})()
+        )
+      );
+      const ac=mode==="walk"?"#3B82F6":"#10B981",ml=mode==="walk"?"Walk":"Bike Ride";
+      return e("div",null,
+        e("div",{style:{background:ac,borderRadius:20,padding:"20px 20px 24px",marginBottom:16,textAlign:"center"}},
+          e("div",{style:{fontSize:52,marginBottom:4}},mode==="walk"?"🚶🏾":"🚴🏾"),
+          !tracking?e("div",null,e("div",{style:{fontSize:15,opacity:0.9,marginBottom:18}},"Ready to start your "+ml.toLowerCase()+"?"),e("div",{style:{display:"flex",gap:10}},e("button",{onClick:start,style:{flex:1,background:"rgba(255,255,255,0.25)",border:"2px solid rgba(255,255,255,0.5)",color:"#fff",borderRadius:16,padding:"15px",fontSize:16,fontWeight:800,cursor:"pointer"}},"▶ Start"),e("button",{onClick:()=>{setMode(null);setTracking(false);},style:{background:"rgba(0,0,0,0.25)",border:"none",color:"rgba(255,255,255,0.7)",borderRadius:16,padding:"15px 20px",fontSize:14,cursor:"pointer"}},"← Back"))):
+          e("div",null,e("div",{style:{fontSize:54,fontWeight:900,color:"#fff",lineHeight:1,marginBottom:4}},fmtDur(elapsed)),e("div",{style:{fontSize:13,opacity:0.8,marginBottom:16}},paused?"⏸ Paused":"● Live"),e("div",{style:{display:"flex",gap:10}},e("button",{onClick:pause,style:{flex:1,background:"rgba(255,255,255,0.2)",border:"2px solid rgba(255,255,255,0.4)",color:"#fff",borderRadius:16,padding:"13px",fontSize:15,fontWeight:700,cursor:"pointer"}},paused?"▶ Resume":"⏸ Pause"),e("button",{onClick:stop,style:{flex:1,background:"rgba(239,68,68,0.3)",border:"2px solid rgba(239,68,68,0.5)",color:"#fff",borderRadius:16,padding:"13px",fontSize:15,fontWeight:700,cursor:"pointer"}},"■ Stop & Save")))
+        ),
+        (tracking||elapsed>0)&&e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:14}},
+          [{label:"Distance",value:(dd<1000?Math.round(dd)+" m":(dd/1609.34).toFixed(2)+" mi"),icon:"📍"},{label:"Speed",value:fmtPace(dd,elapsed),icon:"⚡"},mode==="walk"&&{label:"Steps",value:steps.toLocaleString(),icon:"👟"},{label:"Miles",value:fmtMi(dd),icon:"🗺️"}].filter(Boolean).map(s=>e("div",{key:s.label,style:{background:"#1A1A22",borderRadius:16,padding:"16px 14px",textAlign:"center",border:"1px solid "+ac+"25"}},e("div",{style:{fontSize:22,marginBottom:6}},s.icon),e("div",{style:{fontSize:22,fontWeight:900,color:ac,lineHeight:1}},s.value),e("div",{style:{fontSize:11,color:"#6B7280",marginTop:4,fontWeight:600}},s.label)))
+        ),
+        gpsErr&&e("div",{style:{background:"#1F1700",borderRadius:12,padding:"11px 14px",marginBottom:12,borderLeft:"3px solid #F59E0B"}},e("div",{style:{fontSize:11,color:"#F59E0B",fontWeight:700,marginBottom:3}},"📍 GPS Note"),e("div",{style:{fontSize:13,color:"#D1D5DB"}},gpsErr))
+      );
+    }
+
+    // ── MAIN APP ──────────────────────────────────────────────────────────────
+    function App(){
+      const [user,setUser]=useState("marvin"),[view,setView]=useState("home");
+      const [selCat,setSelCat]=useState(null),[selEx,setSelEx]=useState(null);
+      const [sets,setSets]=useState({}),[phase,setPhase]=useState(1),[phaseModal,setPhaseModal]=useState(false);
+      const [actLog,setActLog]=useState([]);
+      const saveAct=useCallback(s=>setActLog(p=>[...p,{...s,user:user==="marvin"?"Marvin":"LaShay"}]),[user]);
+      const toggleSet=useCallback((c,n,i)=>{const k=c+"__"+n+"__"+i;setSets(p=>({...p,[k]:!p[k]}));},[]);
+      const u=USERS[user],ph=PHASES[phase-1];
+      const e=React.createElement;
+
+      if(selEx){const{ex,cat}=selEx;return e(ExDetail,{ex,cat,sets,onToggle:toggleSet,onBack:()=>setSelEx(null)});}
+
+      if(selCat){
+        const cat=ALL_CATS.find(c=>c.id===selCat);
+        if(!cat){setSelCat(null);return null;}
+        return e("div",{style:{background:"#0F0F13",minHeight:"100dvh",fontFamily:"Inter,sans-serif",color:"#F5F5F0",maxWidth:480,margin:"0 auto"}},
+          e("div",{style:{background:cat.color,padding:"calc(env(safe-area-inset-top,0px)+14px) 16px 24px",borderRadius:"0 0 22px 22px"}},
+            e("button",{onClick:()=>setSelCat(null),style:{background:"rgba(255,255,255,0.2)",border:"none",color:"#fff",padding:"9px 16px",borderRadius:22,cursor:"pointer",fontSize:14,fontWeight:600,marginBottom:14}},"← Back"),
+            e("div",{style:{fontSize:30,marginBottom:4}},cat.emoji),
+            e("div",{style:{fontSize:22,fontWeight:800,marginBottom:3}},cat.label),
+            cat.description&&e("div",{style:{fontSize:13,opacity:0.85,marginBottom:3}},cat.description)
+          ),
+          cat.phaseProgressions&&e("div",{style:{margin:"12px 14px 0",background:ph.color+"15",borderRadius:12,padding:"11px 14px",border:"1px solid "+ph.color+"30"}},
+            e("div",{style:{fontSize:11,color:ph.color,fontWeight:700,marginBottom:4}},ph.label+" · "+ph.months),
+            e("div",{style:{fontSize:13,color:"#D1D5DB"}},cat.phaseProgressions[phase]?.note)
+          ),
+          e("div",{style:{padding:"12px 14px 100px"}},
+            cat.exercises.map(ex=>{
+              const tot=parseInt(ex.sets)||3;
+              const dn=Array.from({length:tot}).filter((_,i)=>sets[cat.id+"__"+ex.name+"__"+i]).length;
+              const done=dn===tot;
+              return e("div",{key:ex.name,onClick:()=>setSelEx({ex,cat}),style:{background:"#1A1A22",borderRadius:18,padding:18,marginBottom:12,cursor:"pointer",border:done?"2px solid "+cat.color:"2px solid transparent"}},
+                e("div",{style:{display:"flex",gap:12,alignItems:"flex-start"}},
+                  e("div",{style:{flex:1}},
+                    e("div",{style:{fontSize:16,fontWeight:700,marginBottom:3}},ex.name),
+                    e("div",{style:{fontSize:12,color:"#9CA3AF",marginBottom:10}},ex.muscles),
+                    e("div",{style:{display:"flex",gap:7,flexWrap:"wrap"}},[ex.sets+" sets",ex.reps+" reps"].map(t=>e("span",{key:t,style:{background:"#2A2A36",color:"#D1D5DB",fontSize:11,padding:"4px 10px",borderRadius:18}},t)))
+                  ),
+                  e("div",{style:{textAlign:"center",minWidth:42}},
+                    e("div",{style:{fontSize:20,fontWeight:900,color:dn>0?cat.color:"#333"}},dn+"/"+tot),
+                    e("div",{style:{fontSize:10,color:"#555",marginTop:1}},"sets"),
+                    done&&e("div",{style:{fontSize:16,marginTop:2}},"✓")
+                  )
+                )
+              );
+            })
+          )
+        );
+      }
+
+      return e("div",{style:{background:"#0F0F13",minHeight:"100dvh",fontFamily:"Inter,sans-serif",color:"#F5F5F0",maxWidth:480,margin:"0 auto"}},
+        phaseModal&&e("div",{style:{position:"fixed",inset:0,background:"rgba(0,0,0,0.88)",zIndex:2000,display:"flex",alignItems:"flex-end"}},
+          e("div",{style:{background:"#1A1A22",borderRadius:"24px 24px 0 0",padding:"28px 20px 36px",width:"100%"}},
+            e("div",{style:{fontSize:16,fontWeight:800,marginBottom:20}},"Your Training Phases"),
+            PHASES.map(p=>e("div",{key:p.id,onClick:()=>{setPhase(p.id);setPhaseModal(false);},style:{background:phase===p.id?p.color+"20":"#111118",border:phase===p.id?"2px solid "+p.color:"2px solid #2A2A36",borderRadius:14,padding:"14px 16px",marginBottom:10,cursor:"pointer"}},
+              e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center"}},e("div",null,e("div",{style:{fontSize:14,fontWeight:700,color:phase===p.id?p.color:"#F5F5F0"}},p.label+" · "+p.sublabel),e("div",{style:{fontSize:12,color:"#9CA3AF",marginTop:2}},p.months)),phase===p.id&&e("div",{style:{color:p.color,fontSize:20}},"✓")),
+              e("div",{style:{fontSize:12,color:"#6B7280",marginTop:6}},p.description)
+            )),
+            e("button",{onClick:()=>setPhaseModal(false),style:{width:"100%",marginTop:8,padding:"14px",borderRadius:14,border:"1px solid #2A2A36",background:"transparent",color:"#9CA3AF",fontSize:14,cursor:"pointer"}},"Close")
+          )
+        ),
+        e("div",{style:{padding:"calc(env(safe-area-inset-top,0px)+14px) 14px 0",display:"flex",gap:10}},
+          Object.values(USERS).map(usr=>e("button",{key:usr.id,onClick:()=>setUser(usr.id),style:{flex:1,padding:"12px 10px",borderRadius:16,border:"none",cursor:"pointer",fontSize:14,fontWeight:700,background:user===usr.id?usr.profileColor:"#1E1E28",color:user===usr.id?"#fff":"#666"}},usr.emoji+" "+usr.name))
+        ),
+        e("div",{style:{padding:"16px 14px 0"}},
+          e("div",{style:{fontSize:12,color:"#6B7280",fontWeight:700,letterSpacing:1,textTransform:"uppercase",marginBottom:3}},"YOUR GYM"),
+          e("div",{style:{fontSize:24,fontWeight:800}},user==="marvin"?"Let's work, "+u.name+" 👊":"Let's move, "+u.name+"! 🌟"),
+          u.lost&&e("div",{style:{fontSize:13,color:"#10B981",marginTop:4,fontWeight:600}},"🏆 "+u.lost+" lbs lost. Keep building."),
+          e("button",{onClick:()=>setPhaseModal(true),style:{display:"flex",alignItems:"center",gap:10,background:ph.color+"18",border:"1px solid "+ph.color+"35",borderRadius:14,padding:"10px 14px",marginTop:12,cursor:"pointer",width:"100%"}},
+            e("div",{style:{background:ph.color,borderRadius:8,padding:"4px 10px",fontSize:11,fontWeight:800,color:"#fff"}},ph.label),
+            e("div",null,e("div",{style:{fontSize:13,fontWeight:700,color:ph.color,textAlign:"left"}},ph.sublabel+" · "+ph.months),e("div",{style:{fontSize:11,color:"#6B7280",textAlign:"left"}},"Tap to change phase")),
+            e("div",{style:{marginLeft:"auto",color:"#555",fontSize:16}},"›")
+          )
+        ),
+        e("div",{style:{display:"flex",gap:8,padding:"14px 14px 0",overflowX:"auto",scrollbarWidth:"none"}},
+          [["home","Workouts"],["schedule","Schedule"],["progress","Progress"],["activity","Activity"],["profile","Profile"]].map(([id,lbl])=>e("button",{key:id,onClick:()=>setView(id),style:{padding:"9px 18px",borderRadius:22,border:"none",cursor:"pointer",fontSize:13,fontWeight:700,whiteSpace:"nowrap",flexShrink:0,background:view===id?"#fff":"#1E1E28",color:view===id?"#0F0F13":"#9CA3AF"}},lbl))
+        ),
+        e("div",{style:{padding:"14px 14px 110px"}},
+          view==="home"&&e("div",null,
+            e("div",{style:{background:"linear-gradient(135deg,#1E1B2E,#1A1A22)",borderRadius:16,padding:16,marginBottom:14,border:"1px solid #2D2A3E"}},
+              e("div",{style:{fontSize:11,color:"#A78BFA",fontWeight:700,letterSpacing:0.5,marginBottom:8,textTransform:"uppercase"}},"🛡️ Safety Rules"),
+              u.healthNotes.map(n=>e("div",{key:n,style:{display:"flex",gap:8,marginBottom:6,alignItems:"flex-start"}},e("span",{style:{color:"#A78BFA",flexShrink:0,marginTop:2}},"•"),e("span",{style:{fontSize:13,color:"#D1D5DB",lineHeight:1.5}},n)))
+            ),
+            e("div",{onClick:()=>setSelCat("warmup"),style:{background:"linear-gradient(135deg,#292410,#1F1A0A)",borderRadius:20,padding:20,marginBottom:12,cursor:"pointer",border:"2px solid #F59E0B"}},
+              e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center"}},
+                e("div",null,e("div",{style:{fontSize:28,marginBottom:4}},"🔥"),e("div",{style:{fontSize:19,fontWeight:800,color:"#FCD34D",marginBottom:2}},"Warm-Up First!"),e("div",{style:{fontSize:12,color:"#D97706",marginBottom:4}},"Always before every session"),e("div",{style:{fontSize:12,color:"#9CA3AF"}},WARMUP.exercises.length+" exercises · ~10 min")),
+                e("div",{style:{background:"#F59E0B",color:"#fff",borderRadius:"50%",width:44,height:44,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}},"→")
+              )
+            ),
+            WORKOUTS.map(cat=>e("div",{key:cat.id,onClick:()=>setSelCat(cat.id),style:{background:"#1A1A22",borderRadius:20,padding:20,marginBottom:12,cursor:"pointer",borderLeft:"4px solid "+cat.color}},
+              e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center"}},
+                e("div",null,e("div",{style:{fontSize:26,marginBottom:4}},cat.emoji),e("div",{style:{fontSize:18,fontWeight:700,marginBottom:2}},cat.label),e("div",{style:{fontSize:12,color:"#9CA3AF"}},cat.exercises.length+" exercises")),
+                e("div",{style:{background:cat.color,color:"#fff",borderRadius:"50%",width:44,height:44,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}},"→")
+              )
+            ))
+          ),
+          view==="schedule"&&e("div",null,
+            e("div",{style:{fontSize:16,fontWeight:800,marginBottom:14}},"Weekly Plan"),
+            SCHEDULE.map(d=>e("div",{key:d.day,style:{background:"#1A1A22",borderRadius:16,padding:"16px",marginBottom:10}},
+              e("div",{style:{fontSize:15,fontWeight:700,marginBottom:3}},d.day),
+              e("div",{style:{fontSize:13,color:"#9CA3AF",marginBottom:d.ids.length?12:0}},d.focus),
+              d.ids.length>0&&e("div",{style:{display:"flex",gap:8,flexWrap:"wrap"}},d.ids.map(id=>{const c=ALL_CATS.find(x=>x.id===id);if(!c)return null;return e("button",{key:id,onClick:()=>setSelCat(id),style:{background:c.color,color:"#fff",border:"none",borderRadius:10,padding:"8px 14px",fontSize:12,fontWeight:700,cursor:"pointer"}},c.emoji+" "+c.label);})),
+              d.ids.length===0&&e("span",{style:{fontSize:22}},"😴")
+            ))
+          ),
+          view==="progress"&&e("div",null,
+            e("div",{style:{fontSize:16,fontWeight:800,marginBottom:14}},"Your 12-Month Journey"),
+            PHASES.map(p=>e("div",{key:p.id,style:{background:phase===p.id?p.color+"15":"#1A1A22",borderRadius:18,padding:18,marginBottom:12,border:phase===p.id?"2px solid "+p.color:"2px solid transparent"}},
+              e("div",{style:{display:"flex",gap:8,alignItems:"center",marginBottom:6}},e("div",{style:{background:p.color,borderRadius:8,padding:"3px 10px",fontSize:11,fontWeight:800,color:"#fff"}},p.label),phase===p.id&&e("div",{style:{fontSize:11,color:p.color,fontWeight:700}},"← YOU ARE HERE")),
+              e("div",{style:{fontSize:16,fontWeight:800,color:phase===p.id?p.color:"#F5F5F0",marginBottom:2}},p.sublabel),
+              e("div",{style:{fontSize:12,color:"#9CA3AF",marginBottom:8}},p.months),
+              e("div",{style:{fontSize:13,color:"#9CA3AF",marginBottom:10,lineHeight:1.6}},p.description),
+              p.rules.map((r,i)=>e("div",{key:i,style:{display:"flex",gap:8,marginBottom:6,alignItems:"flex-start"}},e("span",{style:{color:p.color,flexShrink:0,fontSize:12,marginTop:2}},"→"),e("span",{style:{fontSize:13,color:"#D1D5DB",lineHeight:1.5}},r)))
+            )),
+            e("div",{style:{background:"#1E1B2E",borderRadius:14,padding:16,border:"1px solid #2D2A3E"}},e("div",{style:{fontSize:12,color:"#A78BFA",fontWeight:700,marginBottom:8}},"📌 Research Note"),e("div",{style:{fontSize:13,color:"#9CA3AF",lineHeight:1.65}},"Based on ACSM guidelines: beginners with high blood pressure see measurable BP reduction within 4 weeks. Machines → dumbbells → free weights is the safest progression for back issues. Deload every 4th week prevents overtraining."))
+          ),
+          view==="activity"&&e(Activity,{userName:user==="marvin"?"Marvin":"LaShay",log:actLog,onSave:saveAct}),
+          view==="profile"&&e("div",null,
+            e("div",{style:{background:"linear-gradient(135deg,#1E1B2E,#161B2E)",borderRadius:22,padding:24,marginBottom:14,textAlign:"center"}},
+              e("div",{style:{fontSize:56,marginBottom:8}},u.emoji),
+              e("div",{style:{fontSize:22,fontWeight:800,marginBottom:4}},u.name),
+              u.weight&&e("div",{style:{fontSize:14,color:"#9CA3AF"}},"Current: "+u.weight+" lbs"),
+              u.lost&&e("div",{style:{marginTop:18,background:"#0F0F13",borderRadius:14,padding:16}},
+                e("div",{style:{fontSize:11,color:"#6B7280",marginBottom:10,textTransform:"uppercase",letterSpacing:0.5,fontWeight:600}},"Progress"),
+                e("div",{style:{display:"flex",justifyContent:"space-around"}},[["Started",u.startWeight],["Lost",u.lost+" lbs"],["Now",u.weight]].map(([l,v])=>e("div",{key:l,style:{textAlign:"center"}},e("div",{style:{fontSize:24,fontWeight:900,color:l==="Lost"?"#10B981":"#3B82F6"}},v),e("div",{style:{fontSize:11,color:"#9CA3AF"}},l))))
+              )
+            ),
+            e("div",{style:{background:"#1A1A22",borderRadius:18,padding:18}},
+              e("div",{style:{fontSize:14,fontWeight:700,marginBottom:14}},"Health Focus"),
+              [user==="marvin"&&{icon:"🦴",title:"Back Issues",desc:"All exercises avoid spinal compression. Core work every session protects your back long-term."},user==="marvin"&&{icon:"❤️",title:"High Blood Pressure",desc:"Every exercise has a breathing cue. Consistent training lowers BP within 4 weeks."},
+              {icon:"🏋🏾",title:"Form First Always",desc:"Start lighter than feels necessary. Form before weight, every session."},
+              {icon:"🔥",title:"Warm Up Every Time",desc:"10 minutes of warm-up protects joints and makes every workout more effective."}
+              ].filter(Boolean).map(item=>e("div",{key:item.title,style:{display:"flex",gap:12,marginBottom:16}},e("div",{style:{fontSize:24,flexShrink:0}},item.icon),e("div",null,e("div",{style:{fontSize:14,fontWeight:700,marginBottom:3}},item.title),e("div",{style:{fontSize:13,color:"#9CA3AF",lineHeight:1.6}},item.desc))))
+            )
+          )
+        ),
+        e("div",{style:{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:480,background:"#131318",borderTop:"1px solid #1E1E28",padding:"10px 0 calc(env(safe-area-inset-bottom,0px)+8px)",display:"flex",justifyContent:"space-around",zIndex:100}},
+          [["home","🏋🏾","Workouts"],["schedule","📅","Schedule"],["progress","📈","Progress"],["activity","🗺️","Activity"],["profile","👤","Profile"]].map(([id,em,lbl])=>e("button",{key:id,onClick:()=>setView(id),style:{background:"none",border:"none",cursor:"pointer",textAlign:"center",color:view===id?"#fff":"#444",padding:"2px 16px"}},e("div",{style:{fontSize:22}},em),e("div",{style:{fontSize:10,fontWeight:700,marginTop:2}},lbl)))
+        )
+      );
+    }
+
+    const root=ReactDOM.createRoot(document.getElementById("root"));
+    root.render(React.createElement(App));
+    setTimeout(()=>{const l=document.getElementById("loading");if(l){l.classList.add("fade-out");setTimeout(()=>l.remove(),500);}},1200);
+
+    if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}
+    document.addEventListener("touchmove",e=>{if(e.touches.length>1)e.preventDefault();},{passive:false});
+  })();
   </script>
 </body>
 </html>
