@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F0F13" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="MLS Gym" />
+  <meta name="application-name" content="MLS Gym" />
+  <meta name="description" content="Personal workout and activity tracker for Marvin & LaShay" />
+  <title>MLS Gym</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
+    html { height: 100%; background: #0F0F13; }
+    body { margin: 0; padding: 0; min-height: 100dvh; background: #0F0F13; color: #F5F5F0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; overscroll-behavior: none; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    #root { min-height: 100dvh; position: relative; }
+    * { scrollbar-width: none; -ms-overflow-style: none; }
+    *::-webkit-scrollbar { display: none; }
+    #loading { position: fixed; inset: 0; background: #0F0F13; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s ease; }
+    #loading.fade-out { opacity: 0; pointer-events: none; }
+    .loading-icon { width: 96px; height: 96px; border-radius: 22px; background: linear-gradient(135deg, #1E1E28, #2A2A36); display: flex; align-items: center; justify-content: center; font-size: 52px; margin-bottom: 24px; box-shadow: 0 0 40px rgba(59,130,246,0.3); animation: iconPulse 1.4s ease-in-out infinite; }
+    .loading-title { font-size: 22px; font-weight: 800; color: #F5F5F0; letter-spacing: 0.3px; margin-bottom: 6px; }
+    .loading-sub { font-size: 14px; color: #6B7280; }
+    .loading-bar { width: 160px; height: 3px; background: #1E1E28; border-radius: 2px; margin-top: 24px; overflow: hidden; }
+    .loading-bar-fill { height: 100%; background: linear-gradient(90deg, #3B82F6, #10B981); border-radius: 2px; animation: loadBar 1.2s ease-in-out infinite; }
+    @keyframes iconPulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(59,130,246,0.3); } 50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(59,130,246,0.5); } }
+    @keyframes loadBar { 0% { width: 0%; margin-left: 0; } 50% { width: 70%; margin-left: 0; } 100% { width: 10%; margin-left: 90%; } }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="loading-icon">💪🏾</div>
+    <div class="loading-title">MLS Gym</div>
+    <div class="loading-sub">Marvin &amp; LaShay</div>
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  </div>
+  <div id="root"></div>
+  <script crossorigin src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel" src="App.jsx" data-presets="react"></script>
+  <script type="text/babel" data-presets="react">
+    const domRoot = document.getElementById('root');
+    const reactRoot = ReactDOM.createRoot(domRoot);
+    reactRoot.render(React.createElement(WorkoutApp));
+    const hideLoader = () => {
+      const loader = document.getElementById('loading');
+      if (loader) { loader.classList.add('fade-out'); setTimeout(() => loader.remove(), 500); }
+    };
+    setTimeout(hideLoader, 900);
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('[MLS Gym] SW registered ✓', reg.scope))
+          .catch(err => console.warn('[MLS Gym] SW failed:', err));
+      });
+    }
+    document.addEventListener('touchmove', (e) => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+  </script>
+</body>
+</html>
